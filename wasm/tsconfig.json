@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+  "exclude": [
+    "node_modules",
+    "src/**/*.bak/**/*"
+  ],
+  "extends": "assemblyscript/std/assembly.json",
+  "include": [
+    "src/**/*.ts"
+  ]
+}

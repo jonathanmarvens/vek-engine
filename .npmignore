@@ -1,0 +1,14 @@
+*.bak
+.DS_Store
+.editorconfig
+.eslint*
+.github/
+.prettier*
+dist/**/*.test.mjs
+dist-wasm/debug*
+package-lock.json
+src/
+tsconfig.json
+types/**/*.test.d.mts
+types/**/*.test.d.mts.map
+wasm/

@@ -1,0 +1,34 @@
+name: 'publish package to registries'
+on:
+  push:
+    branches:
+      - 'master'
+jobs:
+  publish:
+    name: 'npm publish'
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 'Check out the repo'
+        uses: 'actions/checkout@v3.5.0'
+      - name: 'Prepare the Node.js environment for publishing to npm'
+        uses: 'actions/setup-node@v3.6.0'
+        with:
+          node-version-file: '.node-version'
+          registry-url: 'https://registry.npmjs.org'
+      - name: '`npm clean-install`'
+        run: 'npm clean-install'
+      - env:
+          NODE_AUTH_TOKEN: '${{ secrets.NPM_ACCESS_TOKEN }}'
+        name: '`npm publish`'
+        run: 'npm publish'
+      - name: 'Prepare the Node.js environment for publishing to GitHub'
+        uses: 'actions/setup-node@v3.6.0'
+        with:
+          node-version-file: '.node-version'
+          registry-url: 'https://npm.pkg.github.com'
+      - name: '`npm clean-install`'
+        run: 'npm clean-install'
+      - env:
+          NODE_AUTH_TOKEN: '${{ secrets.GPR_ACCESS_TOKEN }}'
+        name: '`npm publish`'
+        run: 'npm publish'
