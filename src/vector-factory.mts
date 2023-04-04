@@ -15,7 +15,7 @@ import {isEnvDebug} from './utilities.mjs'
 import {loadWasmModule} from './utilities.mjs'
 
 type VectorCreateClassOptionsT = Partial<{
-  wasm: Partial<{memory: globalThis.WebAssembly.Memory}>
+  wasm: Partial<{memory: WebAssembly.Memory}>
 }>
 
 type VectorModalityT =
@@ -96,12 +96,12 @@ const createClass = async (options?: VectorCreateClassOptionsT) => {
 
   const {memory: wasmMemory, module: wasmModule} = await (async () => {
     const memory = (() => {
-      let memory: globalThis.WebAssembly.Memory | undefined
+      let memory: WebAssembly.Memory | undefined
 
       memory = options?.wasm?.memory
 
-      if (!(memory instanceof globalThis.WebAssembly.Memory)) {
-        memory = new globalThis.WebAssembly.Memory({
+      if (!(memory instanceof WebAssembly.Memory)) {
+        memory = new WebAssembly.Memory({
           initial: 1,
           maximum: 65536 /* (1024 * 64) */,
           shared: true,

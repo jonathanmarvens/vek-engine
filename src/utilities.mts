@@ -87,8 +87,6 @@ const loadWasmModule = async (imports?: LoadWasmModuleImportsT) => {
     }
   })()
 
-  const wasmLoaderFilePath = `../dist-wasm/${env}.js` as const
-
   const {instantiate: instantiateModule} = await (async () => {
     type PromisedModuleT = Promise<
       Awaited<typeof import('../dist-wasm/debug.js')>
@@ -96,31 +94,39 @@ const loadWasmModule = async (imports?: LoadWasmModuleImportsT) => {
 
     switch (env) {
       case 'debug': {
-        return import(wasmLoaderFilePath) as unknown as PromisedModuleT
+        return import('../dist-wasm/debug.js')
       }
 
       case 'release': {
-        return import(wasmLoaderFilePath) as unknown as PromisedModuleT
+        return import('../dist-wasm/release.js') as unknown as PromisedModuleT
       }
     }
   })()
 
-  const wasmFilePath = `../dist-wasm/${env}.wasm` as const
+  const wasmFileUrl = (() => {
+    switch (env) {
+      case 'debug': {
+        return new URL('../dist-wasm/debug.wasm', import.meta.url)
+      }
 
-  const wasmFileUrl = new globalThis.URL(wasmFilePath, import.meta.url)
+      case 'release': {
+        return new URL('../dist-wasm/release.wasm', import.meta.url)
+      }
+    }
+  })()
 
-  let module: globalThis.WebAssembly.Module | undefined
+  let module: WebAssembly.Module | undefined
 
   if (isEnvBrowser) {
-    const response = await globalThis.fetch(wasmFileUrl)
+    const response = await fetch(wasmFileUrl)
 
-    module = await globalThis.WebAssembly.compileStreaming(response)
+    module = await WebAssembly.compileStreaming(response)
   } else if (isEnvNode) {
     const {readFile} = await import('node:fs/promises')
 
     const buffer = await readFile(wasmFileUrl)
 
-    module = await globalThis.WebAssembly.compile(buffer)
+    module = await WebAssembly.compile(buffer)
   } else {
     throw new TypeError('Could not load the WebAssembly module')
   }
