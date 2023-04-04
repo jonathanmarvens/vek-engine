@@ -15,7 +15,7 @@ import type {VectorOptionsT} from './vector-factory.mjs'
 import {VectorPrecision} from './vector-factory.mjs'
 
 const {v, Vector} = await (async () => {
-  const wasmMemory = new globalThis.WebAssembly.Memory({
+  const wasmMemory = new WebAssembly.Memory({
     initial: 1,
     maximum: 65536,
     shared: true,
