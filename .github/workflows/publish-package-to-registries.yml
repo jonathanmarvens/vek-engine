@@ -21,3 +21,14 @@ jobs:
           NODE_AUTH_TOKEN: '${{ secrets.NPM_ACCESS_TOKEN }}'
         name: '`npm publish`'
         run: 'npm publish'
+    # - name: 'Prepare the Node.js environment for publishing to GitHub'
+    #   uses: 'actions/setup-node@v3.6.0'
+    #   with:
+    #     node-version-file: '.node-version'
+    #     registry-url: 'https://npm.pkg.github.com'
+    # - name: '`npm clean-install`'
+    #   run: 'npm clean-install'
+    # - env:
+    #     NODE_AUTH_TOKEN: '${{ secrets.GPR_ACCESS_TOKEN }}'
+    #   name: '`npm publish`'
+    #   run: 'npm publish'
