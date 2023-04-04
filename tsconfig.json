@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "buildOptions": {
+    "verbose": true
+  },
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "checkJs": true,
+    "declaration": true,
+    "declarationDir": "types",
+    "declarationMap": true,
+    "downlevelIteration": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "exactOptionalPropertyTypes": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "incremental": false,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "isolatedModules": true,
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2021"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "newLine": "LF",
+    "noEmit": false,
+    "noErrorTruncation": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "dist",
+    "preserveConstEnums": true,
+    "preserveSymlinks": true,
+    "preserveValueImports": false,
+    "preserveWatchOutput": true,
+    "resolveJsonModule": true,
+    "rootDir": "src",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2021",
+    "useDefineForClassFields": true
+  },
+  "exclude": [
+    "node_modules",
+    "src/**/*.bak/**/*"
+  ],
+  "include": [
+    "src/**/*.mts"
+  ],
+  "ts-node": {
+    "esm": true,
+    "pretty": true,
+    "transpileOnly": true
+  },
+  "typeAcquisition": {
+    "enable": true
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "options": {
+    "baseDir": ".",
+    "bindings": "raw",
+    "disable": [
+      "exception-handling",
+      "gc"
+    ],
+    "enable": [
+      "bulk-memory",
+      "memory64",
+      "multi-value",
+      "nontrapping-f2i",
+      "reference-types",
+      "sign-extension",
+      "simd",
+      "stringref",
+      "tail-calls",
+      "threads"
+    ],
+    "importMemory": true,
+    "initialMemory": 1,
+    "maximumMemory": 65536,
+    "noExportMemory": true,
+    "pedantic": true,
+    "runtime": "incremental",
+    "sharedMemory": 1,
+    "sourceMap": true,
+    "stats": true
+  },
+  "targets": {
+    "debug": {
+      "converge": false,
+      "debug": true,
+      "noAssert": false,
+      "optimize": false,
+      "optimizeLevel": 0,
+      "outFile": "../dist-wasm/debug.wasm",
+      "shrinkLevel": 0,
+      "textFile": "../dist-wasm/debug.wat"
+    },
+    "release": {
+      "converge": true,
+      "debug": false,
+      "noAssert": true,
+      "optimize": true,
+      "optimizeLevel": 3,
+      "outFile": "../dist-wasm/release.wasm",
+      "shrinkLevel": 2,
+      "textFile": "../dist-wasm/release.wat"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+*.bak
+.DS_Store
+dist/
+dist-wasm/
+node_modules/
+package-lock.json
+types/

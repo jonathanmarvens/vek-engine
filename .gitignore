@@ -1,0 +1,6 @@
+*.bak
+.DS_Store
+dist/
+dist-wasm/
+node_modules/
+types/
