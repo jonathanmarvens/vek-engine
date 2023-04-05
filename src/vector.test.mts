@@ -8,7 +8,7 @@
  ***********************************************************************
  */
 
-import {ok as assertOk} from 'node:assert'
+import assertOk from 'node:assert'
 import {decode as decodeMessagepack} from '@msgpack/msgpack'
 import {encode as encodeMessagepack} from '@msgpack/msgpack'
 import test from 'ava'
