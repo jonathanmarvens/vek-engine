@@ -103,5 +103,5 @@
   },
   "type": "module",
   "types": "types/index.d.mts",
-  "version": "0.1.3"
+  "version": "0.1.4"
 }
