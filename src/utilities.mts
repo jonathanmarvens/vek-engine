@@ -37,26 +37,6 @@ const isEnvNode = (() => {
   )
 })()
 
-const {ok: _assertOk} = await (() => {
-  if (isEnvBrowser) {
-    return import('assert')
-  } else if (isEnvNode) {
-    return import('node:assert')
-  } else {
-    throw new TypeError('Could not import the `assert` module')
-  }
-})()
-
-const {inspect: inspectObject} = await (() => {
-  if (isEnvBrowser) {
-    return import('util')
-  } else if (isEnvNode) {
-    return import('node:util')
-  } else {
-    throw new TypeError('Could not import the `util` module')
-  }
-})()
-
 const isEnvDebug = (() => {
   if (isEnvBrowser) {
     return window._vekDebugModeIsEnabled === true
@@ -71,6 +51,41 @@ const isEnvDebug = (() => {
 })()
 
 const isEnvRelease = (() => !isEnvDebug)()
+
+const _assertOk = await (async () => {
+  type OkT = Awaited<typeof import('node:assert')>['ok']
+
+  let ok: OkT | undefined
+
+  if (isEnvRelease) {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    ok = () => {}
+  } else if (isEnvBrowser) {
+    void ({ok} = await import('assert'))
+  } else if (isEnvNode) {
+    void ({ok} = await import('node:assert'))
+  } else {
+    throw new TypeError('Could not import the `assert` module')
+  }
+
+  return ok
+})()
+
+const inspectObject = await (async () => {
+  type InspectT = Awaited<typeof import('node:util')>['inspect']
+
+  let inspect: InspectT | undefined
+
+  if (isEnvBrowser) {
+    void ({inspect} = await import('util'))
+  } else if (isEnvNode) {
+    void ({inspect} = await import('node:util'))
+  } else {
+    throw new TypeError('Could not import the `util` module')
+  }
+
+  return inspect
+})()
 
 function assertOk(value: unknown): asserts value {
   void _assertOk(value)
