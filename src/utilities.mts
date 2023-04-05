@@ -8,13 +8,13 @@
  ***********************************************************************
  */
 
-type LoadWasmModuleImportsT = {env: Record<string, unknown>}
-
 declare global {
   interface Window {
     _vekDebugModeIsEnabled?: boolean
   }
 }
+
+type LoadWasmModuleImportsT = {env: Record<string, unknown>}
 
 const isEnvBrowser = (() => {
   return (

@@ -35,14 +35,14 @@ type VectorModalityT =
 
 type VectorOptionsT = Partial<{disableArrayIndexing: boolean}>
 
-const enum VectorModalityType {
+enum VectorModalityType {
   NULLIMODAL = 0,
   UNIMODAL = 1,
   BIMODAL = 2,
   MULTIMODAL,
 }
 
-const enum VectorPrecision {
+enum VectorPrecision {
   SINGLE = 4,
   DOUBLE = 8,
 }
@@ -483,7 +483,7 @@ const createClass = async (options?: VectorCreateClassOptionsT) => {
         vector = _proxifyInstance(this)
       }
 
-      ;(
+      void (
         [
           [this, nativePointer],
           [vector, nativePointer],
