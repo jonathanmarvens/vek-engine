@@ -71,22 +71,6 @@ const _assertOk = await (async () => {
   return ok
 })()
 
-const inspectObject = await (async () => {
-  type InspectT = Awaited<typeof import('node:util')>['inspect']
-
-  let inspect: InspectT | undefined
-
-  if (isEnvBrowser) {
-    void ({inspect} = await import('util'))
-  } else if (isEnvNode) {
-    void ({inspect} = await import('node:util'))
-  } else {
-    throw new TypeError('Could not import the `util` module')
-  }
-
-  return inspect
-})()
-
 function assertOk(value: unknown): asserts value {
   void _assertOk(value)
 }
@@ -157,7 +141,6 @@ const loadWasmModule = async (imports?: LoadWasmModuleImportsT) => {
 
 export {
   assertOk,
-  inspectObject,
   isEnvBrowser,
   isEnvDebug,
   isEnvNode,

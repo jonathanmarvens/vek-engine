@@ -9,7 +9,7 @@
  */
 
 import {assertOk} from './utilities.mjs'
-import {inspectObject} from './utilities.mjs'
+import type {inspect as inspectObject} from 'node:util'
 import type {InspectOptions} from 'node:util'
 import {isEnvDebug} from './utilities.mjs'
 import {loadWasmModule} from './utilities.mjs'
